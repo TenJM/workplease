@@ -396,7 +396,7 @@
         <h2>Contact Us</h2>
         <p>We’re here to help! Whether you have questions about our services, need support, or want to discuss a project, feel free to get in touch with us. We look forward to connecting with you.</p>
         
-        <form>
+        <form id="contactForm">
             <div class="form-group">
                 <label for="name">Name *</label>
                 <input type="text" id="name" name="name" required>
@@ -461,6 +461,22 @@
         <p>&copy; 2024 Your Name. All rights reserved.</p>
     </div>
 </footer>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    emailjs.init("y_IzpUHHQPR7Wmd8A"); // Replace with your EmailJS user ID
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        emailjs.sendForm("service_6fn39zs", "template_7kd4jbn", this)
+            .then(function(response) {
+                alert('Email sent successfully!');
+            }, function(error) {
+                alert('Failed to send email: ' + JSON.stringify(error));
+            });
+    });
+</script>
 
 <script>
     function showSection(sectionId) {
